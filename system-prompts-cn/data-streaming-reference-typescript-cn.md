@@ -156,7 +156,7 @@ console.log(\`使用的 Token 数: \${finalMessage.usage.output_tokens}\`);
 4. **使用 \`finalMessage()\`** —— 即使在流式传输时也能获取完整的 \`Anthropic.Message\` 对象。不要将 \`.on()\` 事件包装在 \`new Promise()\` 中 —— \`finalMessage()\` 会在内部处理所有的完成/错误/中止状态
 5. **为 Web UI 设置缓冲区** —— 考虑在渲染前缓存一些 token，以避免过多的 DOM 更新
 6. **使用 \`stream.on("text", ...)\` 获取增量** —— \`text\` 事件直接提供增量字符串，比手动过滤 \`content_block_delta\` 事件更简单
-7. **用于带流式传输的代理循环** —— 请参阅 tool-use.md 中的 [流式传输手动循环](./tool-use.md#streaming-manual-loop) 部分，了解如何向工具调用循环结合 \`stream()\` + \`finalMessage()\`
+7. **用于带流式传输的智能体循环** —— 请参阅 tool-use.md 中的 [流式传输手动循环](./tool-use.md#streaming-manual-loop) 部分，了解如何向工具调用循环结合 \`stream()\` + \`finalMessage()\`
 
 ## 原始 SSE 格式
 

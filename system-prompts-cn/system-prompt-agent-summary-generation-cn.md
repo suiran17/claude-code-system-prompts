@@ -1,6 +1,6 @@
 <!--
 name: 'System Prompt: Agent Summary Generation'
-description: 用于“代理摘要”生成的系统提示
+description: 用于“智能体摘要”生成的系统提示
 ccVersion: 2.1.32
 variables:
   - PREVIOUS_AGENT_SUMMARY

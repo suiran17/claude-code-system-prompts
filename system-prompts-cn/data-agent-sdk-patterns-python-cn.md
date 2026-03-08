@@ -1,11 +1,11 @@
 <!--
 name: 'Data: Agent SDK patterns — Python'
-description: Python Agent SDK 模式，包括自定义工具、Hook、子代理、MCP 集成和会话恢复
+description: Python Agent SDK 模式，包括自定义工具、Hook、子智能体、MCP 集成和会话恢复
 ccVersion: 2.1.63
 -->
 # Agent SDK 模式 — Python
 
-## 基础代理
+## 基础智能体
 
 \`\`\`python
 import anyio
@@ -100,7 +100,7 @@ anyio.run(main)
 
 ---
 
-## 子代理 (Subagents)
+## 子智能体 (Subagents)
 
 \`\`\`python
 import anyio
@@ -108,12 +108,12 @@ from claude_agent_sdk import query, ClaudeAgentOptions, AgentDefinition, ResultM
 
 async def main():
     async for message in query(
-        prompt="使用 code-reviewer 代理审查此代码库",
+        prompt="使用 code-reviewer 智能体审查此代码库",
         options=ClaudeAgentOptions(
             allowed_tools=["Read", "Glob", "Grep", "Agent"],
             agents={
                 "code-reviewer": AgentDefinition(
-                    description="负责代码质量和安全审查的专家代码审查代理。",
+                    description="负责代码质量和安全审查的专家代码审查智能体。",
                     prompt="分析代码质量并建议改进方案。",
                     tools=["Read", "Glob", "Grep"]
                 )
@@ -196,7 +196,7 @@ async def main():
     ):
         pass
 
-    # 计划：代理在进行更改前先创建计划
+    # 计划：智能体在进行更改前先创建计划
     async for message in query(
         prompt="重构身份验证系统",
         options=ClaudeAgentOptions(

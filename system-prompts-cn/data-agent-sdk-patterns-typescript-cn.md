@@ -1,11 +1,11 @@
 <!--
 name: 'Data: Agent SDK patterns — TypeScript'
-description: TypeScript Agent SDK 模式，包括基础代理、Hook、子代理和 MCP 集成
+description: TypeScript Agent SDK 模式，包括基础智能体、Hook、子智能体和 MCP 集成
 ccVersion: 2.1.63
 -->
 # Agent SDK 模式 — TypeScript
 
-## 基础代理
+## 基础智能体
 
 \`\`\`typescript
 import { query } from "@anthropic-ai/claude-agent-sdk";
@@ -62,18 +62,18 @@ for await (const message of query({
 
 ---
 
-## 子代理 (Subagents)
+## 子智能体 (Subagents)
 
 \`\`\`typescript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
 for await (const message of query({
-  prompt: "使用 code-reviewer 代理审查此代码库",
+  prompt: "使用 code-reviewer 智能体审查此代码库",
   options: {
     allowedTools: ["Read", "Glob", "Grep", "Agent"],
     agents: {
       "code-reviewer": {
-        description: "负责代码质量和安全审查的专家代码审查代理。",
+        description: "负责代码质量和安全审查的专家代码审查智能体。",
         prompt: "分析代码质量并建议改进方案。",
         tools: ["Read", "Glob", "Grep"],
       },

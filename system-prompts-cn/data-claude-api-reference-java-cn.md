@@ -130,4 +130,4 @@ for (BetaMessage message : toolRunner) {
 
 ### 手动循环
 
-对于手动工具循环，请在请求中将工具定义为 JSON 架构格式，处理响应中的 \`tool_use\` 块，并发回 \`tool_result\`，不断循环直至 \`stop_reason\` 为 \`"end_turn"\`。有关代理循环模式，请参阅 [共享工具使用概念](../shared/tool-use-concepts.md)。
+对于手动工具循环，请在请求中将工具定义为 JSON 架构格式，处理响应中的 \`tool_use\` 块，并发回 \`tool_result\`，不断循环直至 \`stop_reason\` 为 \`"end_turn"\`。有关智能体循环模式，请参阅 [共享工具使用概念](../shared/tool-use-concepts.md)。

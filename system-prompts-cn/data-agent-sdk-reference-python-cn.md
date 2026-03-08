@@ -5,7 +5,7 @@ ccVersion: 2.1.63
 -->
 # Agent SDK — Python
 
-Claude Agent SDK 为构建具有内置工具、安全特性和代理能力的 AI 代理提供了高级接口。
+Claude Agent SDK 为构建具有内置工具、安全特性和智能体能力的 AI 智能体提供了高级接口。
 
 ## 安装
 
@@ -47,7 +47,7 @@ anyio.run(main)
 | WebSearch | 在网页上搜索信息              |
 | WebFetch        | 获取并分析网页内容            |
 | AskUserQuestion | 向用户询问澄清性问题          |
-| Agent           | 启动子代理 (Subagent)         |
+| Agent           | 启动子智能体 (Subagent)         |
 
 ---
 
@@ -55,7 +55,7 @@ anyio.run(main)
 
 ### \`query()\` — 简单的单次使用
 
-\`query()\` 函数是运行代理最简单的方式。它返回消息的异步迭代器。
+\`query()\` 函数是运行智能体最简单的方式。它返回消息的异步迭代器。
 
 \`\`\`python
 from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage
@@ -70,7 +70,7 @@ async for message in query(
 
 ### \`ClaudeSDKClient\` — 全面控制
 
-\`ClaudeSDKClient\` 提供了对代理生命周期的全面控制。当您需要自定义工具、Hook、流式传输或中断执行的能力时，请使用它。
+\`ClaudeSDKClient\` 提供了对智能体生命周期的全面控制。当您需要自定义工具、Hook、流式传输或中断执行的能力时，请使用它。
 
 \`\`\`python
 import anyio
@@ -92,9 +92,9 @@ anyio.run(main)
 \`ClaudeSDKClient\` 支持：
 
 - **内容管理器** (\`async with\`) 用于自动资源清理
-- **\`client.query(prompt)\`** 向代理发送提示词
+- **\`client.query(prompt)\`** 向智能体发送提示词
 - **\`receive_response()\`** 用于流式传输消息直至完成
-- **\`interrupt()\`** 在任务中途停止代理执行
+- **\`interrupt()\`** 在任务中途停止智能体执行
 - **自定义工具必需项**（通过 SDK MCP 服务器）
 
 ---
@@ -146,7 +146,7 @@ async for message in query(
 
 ## Hook
 
-使用回调函数通过 Hook 自定义代理行为：
+使用回调函数通过 Hook 自定义智能体行为：
 
 \`\`\`python
 from claude_agent_sdk import query, ClaudeAgentOptions, HookMatcher, ResultMessage
@@ -184,7 +184,7 @@ async for message in query(prompt="...", options=ClaudeAgentOptions(...)):
 | 选项                              | 类型   | 描述                                                                |
 | --------------------------------- | ------ | ------------------------------------------------------------------- |
 | \`cwd\`                               | string | 文件操作的工作目录                                                  |
-| \`allowed_tools\`                     | list   | 代理可以使用的工具（例如 \`["Read", "Edit", "Bash"]\`）             |
+| \`allowed_tools\`                     | list   | 智能体可以使用的工具（例如 \`["Read", "Edit", "Bash"]\`）             |
 | \`tools\`                             | list   | 设置可用的内置工具（限制默认集合）                                  |
 | \`disallowed_tools\`                  | list   | 明确禁止使用的工具                                                  |
 | \`permission_mode\`                   | string | 如何处理权限提示                                                    |
@@ -192,10 +192,10 @@ async for message in query(prompt="...", options=ClaudeAgentOptions(...)):
 | \`mcp_servers\`                       | dict   | 要连接的 MCP 服务器                                                 |
 | \`hooks\`                             | dict   | 用于自定义行为的 Hook                                               |
 | \`system_prompt\`                     | string | 自定义系统提示词                                                    |
-| \`max_turns\`                         | int    | 停止前的最大代理轮数                                                |
+| \`max_turns\`                         | int    | 停止前的最大智能体轮数                                                |
 | \`max_budget_usd\`                    | float  | 查询的最大预算（美元）                                              |
 | \`model\`                             | string | 模型 ID（默认：由 CLI 决定）                                        |
-| \`agents\`                            | dict   | 子代理定义 (\`dict[str, AgentDefinition]\`)                         |
+| \`agents\`                            | dict   | 子智能体定义 (\`dict[str, AgentDefinition]\`)                         |
 | \`output_format\`                     | dict   | 结构化输出架构                                                      |
 | \`thinking\`                          | dict   | 思考/推理控制                                                       |
 | \`betas\`                             | list   | 要启用的 Beta 功能（例如 \`["context-1m-2025-08-07"]\`）            |
@@ -221,18 +221,18 @@ async for message in query(
 
 ---
 
-## 子代理 (Subagents)
+## 子智能体 (Subagents)
 
 \`\`\`python
 from claude_agent_sdk import query, ClaudeAgentOptions, AgentDefinition, ResultMessage
 
 async for message in query(
-    prompt="使用 code-reviewer 代理审查此代码库",
+    prompt="使用 code-reviewer 智能体审查此代码库",
     options=ClaudeAgentOptions(
         allowed_tools=["Read", "Glob", "Grep", "Agent"],
         agents={
             "code-reviewer": AgentDefinition(
-                description="负责代码质量和安全审查的专家代码审查代理。",
+                description="负责代码质量和安全审查的专家代码审查智能体。",
                 prompt="分析代码质量并建议改进方案。",
                 tools=["Read", "Glob", "Grep"]
             )
@@ -267,8 +267,8 @@ except CLIConnectionError as e:
 
 ## 最佳实践
 
-1. **务必指定 allowed_tools** —— 明确列出代理可以使用的工具
+1. **务必指定 allowed_tools** —— 明确列出智能体可以使用的工具
 2. **设置工作目录** —— 始终为文件操作指定 \`cwd\`
 3. **使用适当的权限模式** —— 从 \`"default"\` 开始，仅在需要时提升
-4. **处理所有消息类型** —— 检查 \`ResultMessage\` 以获取代理输出
-5. **限制 max_turns** —— 设置合理的限制以防止代理失控
+4. **处理所有消息类型** —— 检查 \`ResultMessage\` 以获取智能体输出
+5. **限制 max_turns** —— 设置合理的限制以防止智能体失控

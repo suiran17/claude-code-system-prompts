@@ -17,7 +17,7 @@ ccVersion: 2.1.63
 
 ### 模型描述
 
-- **Claude Opus 4.6** — 我们最智能的模型，专门用于构建代理 (Agents) 和编码。支持适应性思考 (Adaptive thinking，推荐使用)，最大输出 token 数为 128K (大型输出需要配合流式传输)。通过 \`context-1m-2025-08-07\` 标头可开启 Beta 版 1M 上下文窗口。
+- **Claude Opus 4.6** — 我们最智能的模型，专门用于构建智能体 (Agents) 和编码。支持适应性思考 (Adaptive thinking，推荐使用)，最大输出 token 数为 128K (大型输出需要配合流式传输)。通过 \`context-1m-2025-08-07\` 标头可开启 Beta 版 1M 上下文窗口。
 - **Claude Sonnet 4.6** — 速度与智能的最佳结合。支持适应性思考 (推荐使用)。通过 \`context-1m-2025-08-07\` 标头可开启 Beta 版 1M 上下文窗口。最大输出 token 数为 64K。
 - **Claude Haiku 4.5** — 针对简单任务的最快且最具成本效益的模型。
 

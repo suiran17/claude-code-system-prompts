@@ -5,7 +5,7 @@ ccVersion: 2.1.63
 -->
 # Agent SDK — TypeScript
 
-Claude Agent SDK 为构建具有内置工具、安全特性和代理能力的 AI 代理提供了高级接口。
+Claude Agent SDK 为构建具有内置工具、安全特性和智能体能力的 AI 智能体提供了高级接口。
 
 ## 安装
 
@@ -45,7 +45,7 @@ for await (const message of query({
 | WebSearch | 在网页上搜索信息              |
 | WebFetch        | 获取并分析网页内容            |
 | AskUserQuestion | 向用户询问澄清性问题          |
-| Agent           | 启动子代理 (Subagent)         |
+| Agent           | 启动子智能体 (Subagent)         |
 
 ---
 
@@ -157,7 +157,7 @@ query({ prompt: "...", options: { ... } })
 | 选项                              | 类型   | 描述                                                                |
 | --------------------------------- | ------ | ------------------------------------------------------------------- |
 | \`cwd\`                               | string | 文件操作的工作目录                                                  |
-| \`allowedTools\`                      | array  | 代理可以使用的工具（例如 \`["Read", "Edit", "Bash"]\`）             |
+| \`allowedTools\`                      | array  | 智能体可以使用的工具（例如 \`["Read", "Edit", "Bash"]\`）             |
 | \`tools\`                             | array  | 设置可用的内置工具（限制默认集合）                                  |
 | \`disallowedTools\`                   | array  | 明确禁止使用的工具                                                  |
 | \`permissionMode\`                    | string | 如何处理权限提示                                                    |
@@ -165,10 +165,10 @@ query({ prompt: "...", options: { ... } })
 | \`mcpServers\`                        | object | 要连接的 MCP 服务器                                                 |
 | \`hooks\`                             | object | 用于自定义行为的 Hook                                               |
 | \`systemPrompt\`                      | string | 自定义系统提示词                                                    |
-| \`maxTurns\`                          | number | 停止前的最大代理轮数                                                |
+| \`maxTurns\`                          | number | 停止前的最大智能体轮数                                                |
 | \`maxBudgetUsd\`                      | number | 查询的最大预算（美元）                                              |
 | \`model\`                             | string | 模型 ID（默认：由 CLI 决定）                                        |
-| \`agents\`                            | object | 子代理定义 (\`Record<string, AgentDefinition>\`)                    |
+| \`agents\`                            | object | 子智能体定义 (\`Record<string, AgentDefinition>\`)                    |
 | \`outputFormat\`                      | object | 结构化输出架构                                                      |
 | \`thinking\`                          | object | 思考/推理控制                                                       |
 | \`betas\`                             | array  | 要启用的 Beta 功能（例如 \`["context-1m-2025-08-07"]\`）            |
@@ -177,16 +177,16 @@ query({ prompt: "...", options: { ... } })
 
 ---
 
-## 子代理 (Subagents)
+## 子智能体 (Subagents)
 
 \`\`\`typescript
 for await (const message of query({
-  prompt: "使用 code-reviewer 代理审查此代码库",
+  prompt: "使用 code-reviewer 智能体审查此代码库",
   options: {
     allowedTools: ["Read", "Glob", "Grep", "Agent"],
     agents: {
       "code-reviewer": {
-        description: "负责代码质量和安全审查的专家代码审查代理。",
+        description: "负责代码质量和安全审查的专家代码审查智能体。",
         prompt: "分析代码质量并建议改进方案。",
         tools: ["Read", "Glob", "Grep"],
       },
@@ -218,8 +218,8 @@ for await (const message of query({
 
 ## 最佳实践
 
-1. **务必指定 allowedTools** —— 明确列出代理可以使用的工具
+1. **务必指定 allowedTools** —— 明确列出智能体可以使用的工具
 2. **设置工作目录** —— 始终为文件操作指定 \`cwd\`
 3. **使用适当的权限模式** —— 从 \`"default"\` 开始，仅在需要时提升
-4. **处理所有消息类型** —— 检查 \`result\` 属性以获取代理输出
-5. **限制 maxTurns** —— 设置合理的限制以防止代理失控
+4. **处理所有消息类型** —— 检查 \`result\` 属性以获取智能体输出
+5. **限制 maxTurns** —— 设置合理的限制以防止智能体失控

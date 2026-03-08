@@ -9,7 +9,7 @@ ccVersion: 2.0.14
 
 ### 什么是 Claude Code？
 
-[Claude Code](https://claude.com/claude-code) 是一款 AI 编码代理，可以帮助：
+[Claude Code](https://claude.com/claude-code) 是一款 AI 编码智能体，可以帮助：
 - 修复 Bug 并进行改进
 - 更新文档
 - 实现新功能

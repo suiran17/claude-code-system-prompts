@@ -64,14 +64,14 @@ ccVersion: 2.1.63
 
 ### 工具运行器 vs 手动循环
 
-**工具运行器 (Tool Runner，推荐)：** SDK 的工具运行器会自动处理代理循环 (Agentic loop) —— 它负责调用 API、检测工具使用请求、执行您的工具函数、将结果反馈给 Claude，并不断重复直到 Claude 停止调用工具。适用于 Python, TypeScript, Java, Go, 和 Ruby SDK (Beta)。
+**工具运行器 (Tool Runner，推荐)：** SDK 的工具运行器会自动处理智能体循环 (Agentic loop) —— 它负责调用 API、检测工具使用请求、执行您的工具函数、将结果反馈给 Claude，并不断重复直到 Claude 停止调用工具。适用于 Python, TypeScript, Java, Go, 和 Ruby SDK (Beta)。
 
-**手动代理循环：** 当您需要对循环进行精细化控制时使用（例如自定义日志记录、有条件的工具执行、需要人工介入审批等）。循环持续进行直到 \`stop_reason == "end_turn"\`。务必追加完整的 \`response.content\` 以保留 \`tool_use\` 块，并确保每个 \`tool_result\` 都包含匹配的 \`tool_use_id\`。
+**手动智能体循环：** 当您需要对循环进行精细化控制时使用（例如自定义日志记录、有条件的工具执行、需要人工介入审批等）。循环持续进行直到 \`stop_reason == "end_turn"\`。务必追加完整的 \`response.content\` 以保留 \`tool_use\` 块，并确保每个 \`tool_result\` 都包含匹配的 \`tool_use_id\`。
 
 **服务端工具的停止原因：** 当使用服务端工具（代码执行、网页搜索等）时，API 会运行一个服务端采样循环。如果该循环达到默认的 10 次迭代限制，响应将返回 \`stop_reason: "pause_turn"\`。若要继续，请重新发送用户消息和助手响应并再次发起 API 请求 —— 服务器将从中断处继续。请“不要”添加额外的用户消息（如“继续”）。API 会检测末尾的 \`server_tool_use\` 块并自动恢复。
 
 \`\`\`python
-# 在您的代理循环中处理 pause_turn
+# 在您的智能体循环中处理 pause_turn
 if response.stop_reason == "pause_turn":
     messages = [
         {"role": "user", "content": user_query},
@@ -85,7 +85,7 @@ if response.stop_reason == "pause_turn":
 
 请设置 \`max_continuations\` 限制（例如 5）以防止无限循环。完整指南请参阅：\`https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons\`
 
-> **安全警告：** 工具运行器会在 Claude 请求时自动执行您的工具函数。对于具有副作用的工具（发送电子邮件、修改数据库、金融交易），请在工具函数内部验证输入，并考虑对破坏性操作要求二次确认。如果您在每次工具执行前需要进行人工审批，请使用“手动代理循环”。
+> **安全警告：** 工具运行器会在 Claude 请求时自动执行您的工具函数。对于具有副作用的工具（发送电子邮件、修改数据库、金融交易），请在工具函数内部验证输入，并考虑对破坏性操作要求二次确认。如果您在每次工具执行前需要进行人工审批，请使用“手动智能体循环”。
 
 ---
 

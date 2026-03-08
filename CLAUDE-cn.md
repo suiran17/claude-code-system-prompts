@@ -8,7 +8,7 @@
 
 ## 什么是 Claude Code
 
-Claude Code 是 Anthropic 推出的用于代理化编程 (Agentic Coding) 的命令行工具 (CLI)。它以编译后的 npm 包 (`@anthropic-ai/claude-code`) 形式分发。其源代码不公开。 [anthropics/claude-code](https://github.com/anthropics/claude-code) GitHub 仓库仅用于发布问题 (Issues) 和版本 (Releases)。
+Claude Code 是 Anthropic 推出的用于智能体化编程 (Agentic Coding) 的命令行工具 (CLI)。它以编译后的 npm 包 (`@anthropic-ai/claude-code`) 形式分发。其源代码不公开。 [anthropics/claude-code](https://github.com/anthropics/claude-code) GitHub 仓库仅用于发布问题 (Issues) 和版本 (Releases)。
 
 ## 如何使用这些文件
 
@@ -16,7 +16,7 @@ Claude Code 是 Anthropic 推出的用于代理化编程 (Agentic Coding) 的命
 - **本地打补丁：** 使用 [tweakcc](https://github.com/Piebald-AI/tweakcc) 在您的本地 Claude Code 安装中自定义单个提示词片段。
 - **功能请求：** 若要对 Claude Code 的提示词提出修改建议，请在 [anthropics/claude-code/issues](https://github.com/anthropics/claude-code/issues) 提交 Issue。
 
-## 针对处理该仓库的 AI 代理
+## 针对处理该仓库的 AI 智能体
 
 - 这些文件是**提取出的参考资料**，而非可修改的源代码。
 - 修改此处的文件不会改变 Claude Code 的行为。

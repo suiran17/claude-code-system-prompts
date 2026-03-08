@@ -37,6 +37,6 @@ ${ISSUE_DESCRIPTION||"用户未提供具体的问题描述。请阅读调试日�
 
 1. 审阅用户的问题描述
 2. 最后 ${LOG_LINE_COUNT} 行展示了调试文件的格式。请在整个文件中寻找 [ERROR] 和 [WARN] 条目、堆栈跟踪以及失败模式
-3. 考虑启动 ${CLAUDE_CODE_GUIDE_SUBAGENT_NAME} 子代理，以了解相关的 Claude Code 特性
+3. 考虑启动 ${CLAUDE_CODE_GUIDE_SUBAGENT_NAME} 子智能体，以了解相关的 Claude Code 特性
 4. 用通俗易懂的语言解释你的发现
 5. 提出具体的修复方案或后续步骤

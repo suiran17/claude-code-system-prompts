@@ -22,8 +22,8 @@ ccVersion: 2.1.30
    - 如何使用：\`claude -p "fix lint errors" --allowedTools "Edit,Read,Bash"\`
    - 适用于：CI/CD 集成、批量代码修复、自动化审查。
 
-5. **任务代理 (Task Agents)**：Claude 会生成专注的子代理来处理复杂的探索或并行工作。
-   - 如何使用：Claude 会在有帮助时自动调用，或者您可以要求“使用代理探索 X”。
+5. **任务智能体 (Task Agents)**：Claude 会生成专注的子智能体来处理复杂的探索或并行工作。
+   - 如何使用：Claude 会在有帮助时自动调用，或者您可以要求“使用智能体探索 X”。
    - 适用于：代码库探索、理解复杂系统。
 
 仅以有效的 JSON 对象形式进行回复：

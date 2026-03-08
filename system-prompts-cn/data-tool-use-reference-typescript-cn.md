@@ -1,6 +1,6 @@
 <!--
 name: 'Data: Tool use reference — TypeScript'
-description: TypeScript 工具使用参考，包括工具运行器、手动代理循环、代码执行和结构化输出
+description: TypeScript 工具使用参考，包括工具运行器、手动智能体循环、代码执行和结构化输出
 ccVersion: 2.1.63
 -->
 # 工具使用 (Tool Use) — TypeScript
@@ -33,7 +33,7 @@ const getWeather = betaZodTool({
   },
 });
 
-// 工具运行器负责处理代理循环并返回最终消息
+// 工具运行器负责处理智能体循环并返回最终消息
 const finalMessage = await client.beta.messages.toolRunner({
   model: "{{OPUS_ID}}",
   max_tokens: 4096,
@@ -53,7 +53,7 @@ console.log(finalMessage.content);
 
 ---
 
-## 手动代理循环 (Manual Agentic Loop)
+## 手动智能体循环 (Manual Agentic Loop)
 
 当您需要更精细的控制（如自定义日志记录、有条件的工具执行、流式输出单次迭代、人工审批等）时，请使用此方法：
 

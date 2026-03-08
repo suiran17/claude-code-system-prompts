@@ -148,4 +148,4 @@ fmt.Println(message.Content[0].Text)
 
 ### 手动循环
 
-对于精细控制，请通过 JSON 架构 (Schema) 使用原始工具定义。有关工具定义格式和代理循环模式，请参阅 [共享工具使用概念](../shared/tool-use-concepts.md)。
+对于精细控制，请通过 JSON 架构 (Schema) 使用原始工具定义。有关工具定义格式和智能体循环模式，请参阅 [共享工具使用概念](../shared/tool-use-concepts.md)。

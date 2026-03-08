@@ -18,7 +18,7 @@ ccVersion: 2.1.47
 **长时间对话（可能超出上下文窗口）：**
 → 参考 \`{lang}/claude-api/README.md\` —— 见“对话压缩 (Compaction)”部分
 
-**函数调用 / 工具使用 / 代理 (Agents)：**
+**函数调用 / 工具使用 / 智能体 (Agents)：**
 → 参考 \`{lang}/claude-api/README.md\` + \`shared/tool-use-concepts.md\` + \`{lang}/claude-api/tool-use.md\`
 
 **批量处理（对延迟不敏感）：**
@@ -27,7 +27,7 @@ ccVersion: 2.1.47
 **跨多个请求的文件上传：**
 → 参考 \`{lang}/claude-api/README.md\` + \`{lang}/claude-api/files-api.md\`
 
-**带有内置工具（文件/网页/终端）的代理 (仅限 Python & TypeScript)：**
+**带有内置工具（文件/网页/终端）的智能体 (仅限 Python & TypeScript)：**
 → 参考 \`{lang}/agent-sdk/README.md\` + \`{lang}/agent-sdk/patterns.md\`
 
 **错误处理：**

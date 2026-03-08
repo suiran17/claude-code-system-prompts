@@ -66,19 +66,19 @@ ccVersion: 2.1.63
 
 ## 我该使用哪个交互层级 (Surface)？
 
-> **从简开始。** 默认选择能满足您需求的最低层级。单次 API 调用和工作流足以处理大多数用例 —— 只有当任务真正需要开放式、由模型驱动的探索时，才考虑使用代理 (Agents)。
+> **从简开始。** 默认选择能满足您需求的最低层级。单次 API 调用和工作流足以处理大多数用例 —— 只有当任务真正需要开放式、由模型驱动的探索时，才考虑使用智能体 (Agents)。
 
 | 用例 | 层级 | 推荐层级 | 原因 |
 | :--- | :--- | :--- | :--- |
 | 分类、总结、提取、问答 | 单次 LLM 调用 | **Claude API** | 一次请求，一次响应 |
 | 批量处理或嵌入 (Embeddings) | 单次 LLM 调用 | **Claude API** | 专用端点 |
 | 带代码控制逻辑的多步流水线 | 工作流 (Workflow) | **Claude API + 工具使用** | 由您编排循环 |
-| 带有自定义工具的专用代理 | 代理 (Agent) | **Claude API + 工具使用** | 最大的灵活性 |
-| 具有文件/网页/终端访问能力的 AI 代理 | 代理 (Agent) | **Agent SDK** | 内置工具、安全性和 MCP 支持 |
-| 代理化编码助手 | 代理 (Agent) | **Agent SDK** | 专为此用例设计 |
-| 需要内置权限和护栏 | 代理 (Agent) | **Agent SDK** | 包含安全特性 |
+| 带有自定义工具的专用智能体 | 智能体 (Agent) | **Claude API + 工具使用** | 最大的灵活性 |
+| 具有文件/网页/终端访问能力的 AI 智能体 | 智能体 (Agent) | **Agent SDK** | 内置工具、安全性和 MCP 支持 |
+| 智能体化编码助手 | 智能体 (Agent) | **Agent SDK** | 专为此用例设计 |
+| 需要内置权限和护栏 | 智能体 (Agent) | **Agent SDK** | 包含安全特性 |
 
-> **注意：** Agent SDK 适用于您希望开箱即用地获得内置文件/网页/终端工具、权限和 MCP 的场景。如果您想构建一个使用自己开发的工具的代理，Claude API 是正确的选择 —— 请使用工具运行器自动处理循环，或者使用手动循环进行精细化控制（审批环节、自定义日志记录、条件执行）。
+> **注意：** Agent SDK 适用于您希望开箱即用地获得内置文件/网页/终端工具、权限和 MCP 的场景。如果您想构建一个使用自己开发的工具的智能体，Claude API 是正确的选择 —— 请使用工具运行器自动处理循环，或者使用手动循环进行精细化控制（审批环节、自定义日志记录、条件执行）。
 
 ### 决策树
 
@@ -93,18 +93,18 @@ ccVersion: 2.1.63
    自主发现并访问文件/网页/Shell？）
    └── 是 → Agent SDK —— 内置工具，无需重复造轮子
        示例：“扫描代码库查找 Bug”、“总结目录中的每个文件”、
-             “使用子代理查找 Bug”、“通过网络搜索研究主题”
+             “使用子智能体查找 Bug”、“通过网络搜索研究主题”
 
 3. 工作流（多步骤、代码编排、使用您自己的工具）
    └── Claude API 配合工具使用 —— 您控制循环
 
-4. 开放式代理（模型决定自己的轨迹，使用您自己的工具）
-   └── Claude API 代理循环（最大灵活性）
+4. 开放式智能体（模型决定自己的轨迹，使用您自己的工具）
+   └── Claude API 智能体循环（最大灵活性）
 \`\`\`
 
-### 我应该构建代理 (Agent) 吗？
+### 我应该构建智能体 (Agent) 吗？
 
-在选择代理层级之前，请检查以下四个标准：
+在选择智能体层级之前，请检查以下四个标准：
 
 - **复杂度** —— 任务是否是多步骤的，且难以提前完全规定？（例如：“将此设计文档转化为 PR” vs “从此 PDF 中提取标题”）
 - **价值** —— 结果是否值得付出更高的成本和延迟？
@@ -149,7 +149,7 @@ ccVersion: 2.1.63
 
 **Opus 4.6 —— 适应性思考 (推荐使用)：** 使用 \`thinking: {type: "adaptive"}\`。Claude 会动态决定何时思考以及思考多少。无需 \`budget_tokens\` —— \`budget_tokens\` 在 Opus 4.6 和 Sonnet 4.6 上已被弃用，不得使用。适应性思考还会自动开启交替思考 (interleaved thinking，无需 beta 标头)。**当用户要求“扩展思考 (extended thinking)”、“思考预算 (thinking budget)”或 \`budget_tokens\` 时：请始终使用带有 \`thinking: {type: "adaptive"}\` 的 Opus 4.6。固定 Token 预算思考的概念已被弃用 —— 适应性思考取而代之。不要使用 \`budget_tokens\`，也不要切换到旧模型。**
 
-**努力程度 (Effort) 参数 (GA 特性，无需 beta 标头)：** 通过 \`output_config: {effort: "low"|"medium"|"high"|"max"}\` 来控制思考深度和整体 Token 花费（位于 \`output_config\` 内部，而非顶级层级）。默认值为 \`high\`（等同于忽略该参数）。\`max\` 仅适用于 Opus 4.6。该参数适用于 Opus 4.5, Opus 4.6, 以及 Sonnet 4.6。在 Sonnet 4.5 / Haiku 4.5 上会报错。配合适应性思考使用可获得最佳的成本质量权衡。对于子代理或简单任务请使用 \`low\`；对于最深层的推理请使用 \`max\`。
+**努力程度 (Effort) 参数 (GA 特性，无需 beta 标头)：** 通过 \`output_config: {effort: "low"|"medium"|"high"|"max"}\` 来控制思考深度和整体 Token 花费（位于 \`output_config\` 内部，而非顶级层级）。默认值为 \`high\`（等同于忽略该参数）。\`max\` 仅适用于 Opus 4.6。该参数适用于 Opus 4.5, Opus 4.6, 以及 Sonnet 4.6。在 Sonnet 4.5 / Haiku 4.5 上会报错。配合适应性思考使用可获得最佳的成本质量权衡。对于子智能体或简单任务请使用 \`low\`；对于最深层的推理请使用 \`max\`。
 
 **Sonnet 4.6：** 支持适应性思考 (\`thinking: {type: "adaptive"}\`)。\`budget_tokens\` 在 Sonnet 4.6 上已被弃用 —— 请改用适应性思考。
 
@@ -182,7 +182,7 @@ ccVersion: 2.1.63
 **长时间对话（可能超出上下文窗口）：**
 → 阅读 \`{lang}/claude-api/README.md\` —— 见“对话压缩 (Compaction)”部分
 
-**函数调用 / 工具使用 / 代理 (Agents)：**
+**函数调用 / 工具使用 / 智能体 (Agents)：**
 → 阅读 \`{lang}/claude-api/README.md\` + \`shared/tool-use-concepts.md\` + \`{lang}/claude-api/tool-use.md\`
 
 **批量处理（对延迟不敏感）：**
@@ -191,7 +191,7 @@ ccVersion: 2.1.63
 **跨多个请求的文件上传：**
 → 阅读 \`{lang}/claude-api/README.md\` + \`{lang}/claude-api/files-api.md\`
 
-**具有内置工具（文件/网页/终端）的代理：**
+**具有内置工具（文件/网页/终端）的智能体：**
 → 阅读 \`{lang}/agent-sdk/README.md\` + \`{lang}/agent-sdk/patterns.md\`
 
 ### Claude API (完整文件参考)
@@ -214,7 +214,7 @@ ccVersion: 2.1.63
 阅读**特定语言的 Agent SDK 文件夹** (\`{language}/agent-sdk/\`)。Agent SDK 仅适用于 **Python 和 TypeScript**。
 
 1. **\`{language}/agent-sdk/README.md\`** —— 安装、快速入门、内置工具、权限、MCP、钩子 (Hooks)。
-2. **\`{language}/agent-sdk/patterns.md\`** —— 自定义工具、钩子、子代理、MCP 集成、会话恢复。
+2. **\`{language}/agent-sdk/patterns.md\`** —— 自定义工具、钩子、子智能体、MCP 集成、会话恢复。
 3. **\`shared/live-sources.md\`** —— 当前 Agent SDK 文档的 WebFetch URL。
 
 ---

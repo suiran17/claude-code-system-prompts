@@ -1,6 +1,6 @@
 <!--
 name: 'Agent Prompt: Update Magic Docs'
-description: magic-docs 代理的提示词。
+description: magic-docs 智能体的提示词。
 ccVersion: 2.0.30
 agentMetadata:
   agentType: 'magic-docs'

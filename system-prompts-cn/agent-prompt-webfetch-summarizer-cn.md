@@ -1,6 +1,6 @@
 <!--
 name: 'Agent Prompt: WebFetch summarizer'
-description: 为主模型总结 WebFetch 冗长输出的代理提示
+description: 为主模型总结 WebFetch 冗长输出的智能体提示
 ccVersion: 2.1.30
 variables:
   - WEB_CONTENT

@@ -1,6 +1,6 @@
 <!--
 name: 'Agent Prompt: Session Search Assistant'
-description: 会话搜索助手的代理提示，用于根据用户查询和元数据查找相关会话
+description: 会话搜索助手的智能体提示，用于根据用户查询和元数据查找相关会话
 ccVersion: 2.1.6
 -->
 您的目标是根据用户的搜索查询查找相关会话。

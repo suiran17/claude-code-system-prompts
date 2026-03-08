@@ -1,6 +1,6 @@
 <!--
 name: 'Data: Tool use reference — Python'
-description: Python 工具使用参考，包括工具运行器、手动代理循环、代码执行和结构化输出
+description: Python 工具使用参考，包括工具运行器、手动智能体循环、代码执行和结构化输出
 ccVersion: 2.1.63
 -->
 # 工具使用 (Tool Use) — Python
@@ -30,7 +30,7 @@ def get_weather(location: str, unit: str = "celsius") -> str:
     # 此处为您的实现细节
     return f"在 {location} 天气晴朗，72°F"
 
-# 工具运行器会自动处理代理循环
+# 工具运行器会自动处理智能体循环
 runner = client.beta.messages.tool_runner(
     model="{{OPUS_ID}}",
     max_tokens=4096,
@@ -54,7 +54,7 @@ for message in runner:
 
 ---
 
-## 手动代理循环 (Manual Agentic Loop)
+## 手动智能体循环 (Manual Agentic Loop)
 
 当您需要更精细的控制（如自定义日志记录、有条件的工具执行、人工审批等）时，请使用此方法：
 
@@ -65,7 +65,7 @@ client = anthropic.Anthropic()
 tools = [...]  # 您的工具定义
 messages = [{"role": "user", "content": user_input}]
 
-# 代理循环：持续执行直到 Claude 停止调用工具
+# 智能体循环：持续执行直到 Claude 停止调用工具
 while True:
     response = client.messages.create(
         model="{{OPUS_ID}}",

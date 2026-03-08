@@ -72,4 +72,4 @@ await foreach (RawMessageStreamEvent streamEvent in client.Messages.CreateStream
 
 ## 工具使用 (手动循环)
 
-C# SDK 通过 JSON 架构 (Schema) 支持原始工具定义。有关工具定义格式和代理循环模式，请参阅 [共享工具使用概念](../shared/tool-use-concepts.md)。
+C# SDK 通过 JSON 架构 (Schema) 支持原始工具定义。有关工具定义格式和智能体循环模式，请参阅 [共享工具使用概念](../shared/tool-use-concepts.md)。

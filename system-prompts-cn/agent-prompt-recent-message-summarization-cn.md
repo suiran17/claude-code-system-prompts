@@ -1,6 +1,6 @@
 <!--
 name: 'Agent Prompt: Recent Message Summarization'
-description: 用于总结近期消息的代理提示
+description: 用于总结近期消息的智能体提示
 ccVersion: 2.1.63
 -->
 您的任务是为对话的“近期”部分创建详细总结 —— 即紧随早期保留上下文之后的消息。早期的消息保持原样，不需要总结。您的总结应专注于近期消息中讨论、学到和完成的内容。
